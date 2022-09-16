@@ -34,8 +34,8 @@ const Ax = {
 }
 //类似请求拦截
 function server(url, options) {
+    console.log(options, '---------------->');
     return new Promise(async (resolve, reject) => {
-        options.headers.useruniqueid = "d283f7bb-8edd-4642-8ade-5f6b2424d160.aa68e8047f18f7331fb74cd31337b86f"
         if (store.state.token) options.headers.Authorization = `Bearer${store.state.token}`
         await fetch(url, options).then((res) => {
             if (res.status == 200) {

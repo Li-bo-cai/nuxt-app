@@ -2,7 +2,6 @@ import request from '../api/index'
 import md5 from 'js-md5';
 
 const store = useStore('user-uuid')
-console.log('user-uuid-------------------------->', store);
 
 export default defineNuxtPlugin((nuxtApp) => {
 
@@ -28,7 +27,8 @@ export default defineNuxtPlugin((nuxtApp) => {
         provide: {
             uuid: uuid.value,
             request: request({
-                "useruniqueid": `${uuid.value}.${md5(uuid.value + '.@sd.#s$')}`
+                "useruniqueid": `${uuid.value}.${md5(uuid.value + '.@sd.#s$')}`,
+                "Authorization": useCookie('access_token') ? `Bearer${useCookie('access_token').access_token}` : ''
             }),
         }
     }
